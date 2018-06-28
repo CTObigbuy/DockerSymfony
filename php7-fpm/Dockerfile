@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install -y \
 #Instalación Composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
+RUN curl https://phar.phpunit.de/phpunit-7.phar > phpunit.phar && \
+chmod +x phpunit.phar &&  cp phpunit.phar /usr/local/lib/php
+
 
 #Setear TimeZone.
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone
